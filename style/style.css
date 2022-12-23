@@ -13,7 +13,7 @@
     color:#F49D1A ;
     background-color: #497285;
     margin: auto;
-    margin-top: 3vh;
+    margin-top: 2vh;
     padding: 20px 50px; 
     display: flex;
     border-radius: 6px  ;  
@@ -59,7 +59,13 @@ input[type=button]{
     font-size: 1.7vw;
 }
 input[type=button]:hover{
-    border: 1.5px solid #F49D1A;
+    border: 1.3px solid #F49D1A;
+    padding:3px 5px;
+    margin-bottom: 5px;
+    height: 25px;
+    border-radius: 4px;
+    
+    font-size: 1.7vw;
 }
 
  
