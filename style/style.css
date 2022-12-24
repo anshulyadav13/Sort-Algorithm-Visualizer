@@ -64,7 +64,7 @@ input[type=button]{
     border-radius: 4px;
     border: 1px solid #120136;
  
-    font-size: 15px;
+    font-size: 16px;
 }
 input[type=button]:hover{
     border: 1px solid #fa1e0e;
