@@ -81,7 +81,18 @@ input[type=button] {
 input[type=button]:hover {
     border: 1px solid #fa1e0e;
     color: #fa1e0e;
+    transition:ease-out ;
+    transform: scale(1.1);
+    transition-duration: 100ms;
 
+
+}
+.bar-transition{
+
+    transition:ease-in ;
+    transition-duration: 100ms;
+    transform: scale(1.1);
+    transition:ease-out ;
 
 }
 

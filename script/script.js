@@ -8,7 +8,7 @@ rangeEvent.addEventListener("change", show);
 const speedRangeEvent = document.getElementById("speed-range");
 let speedRange = speedRangeEvent.value;
 speedRangeEvent.addEventListener("change", function () {
-    // document.getElementById("max-speed").innerHTML =  speedRangeEvent.value;
+   
     speedRange = speedRangeEvent.value;
 
 });
@@ -19,7 +19,7 @@ let mainContainer = document.getElementById("main-container");
 function show() {
     let range = document.getElementById("range").value;
     let maxRange = document.getElementById("maxRange");
-    // document.getElementById("max-speed").innerHTML = speedRangeEvent.value ;
+  
     maxRange.innerHTML = range;
     console.log("showing");
     // console.log("range is: "+range);
@@ -87,8 +87,11 @@ async function swapBars(child, j, k) {
     const colorj = child[j].style.backgroundColor;
     const colorj1 = child[k].style.backgroundColor;
     child[j].style.backgroundColor = "#c0eee6";
+    child[j].classList.add("bar-transition");
+    
     await waitforme(speedRange);
     child[k].style.backgroundColor = "#c0eee6";
+    child[k].classList.add("bar-transition");
     await waitforme(speedRange);
     child[k].style.height = actualheightAtJ + "vh";
     child[k].innerHTML = heightAtJ;
@@ -98,6 +101,10 @@ async function swapBars(child, j, k) {
     child[k].style.backgroundColor = colorj1;
     await waitforme(100 + (speedRange / 10));
     child[j].style.backgroundColor = colorj;
+    await waitforme(100 + (speedRange / 10));
+    child[j].classList.remove("bar-transition");
+    await waitforme(100 + (speedRange / 10));
+    child[k].classList.remove("bar-transition");
 }
 
 async function setBars(child, j, k) {
@@ -110,8 +117,10 @@ async function setBars(child, j, k) {
     const colorj1 = child[k].style.backgroundColor;
 
     child[j].style.backgroundColor = "#c0eee6";
+    child[j].classList.add("bar-transition");
     await waitforme(speedRange);
     child[k].style.backgroundColor = "#c0eee6";
+    child[k].classList.add("bar-transition");
     await waitforme(speedRange);
 
 
@@ -122,6 +131,10 @@ async function setBars(child, j, k) {
     child[k].style.backgroundColor = colorj1;
     await waitforme(100 + (speedRange / 10));
     child[j].style.backgroundColor = colorj;
+    await waitforme(100 + (speedRange / 10));
+    child[j].classList.remove("bar-transition");
+    await waitforme(100 + (speedRange / 10));
+    child[k].classList.remove("bar-transition");
 }
 
 

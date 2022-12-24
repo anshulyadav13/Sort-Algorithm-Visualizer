@@ -25,7 +25,9 @@ async function merge(child, beg, mid, end) {
         const colorj = child[j].style.backgroundColor;
 
         child[j].style.backgroundColor = "#c0eee6";
+        child[j].classList.add("bar-transition");
         child[i].style.backgroundColor = "#c0eee6";
+        child[i].classList.add("bar-transition");
 
         if (hightAtI <= hightAtJ) {
             copy[k++] = hightAtI;
@@ -40,7 +42,11 @@ async function merge(child, beg, mid, end) {
             await waitforme(100 + (speedRange / 10));
             child[j - 1].style.backgroundColor = colorj;
         }
-
+        await waitforme(100 + (speedRange / 10));
+        
+    child[j].classList.remove("bar-transition");
+    await waitforme(100 + (speedRange / 10));
+    child[i].classList.remove("bar-transition");
 
     }
     if (i > mid) {
@@ -48,22 +54,28 @@ async function merge(child, beg, mid, end) {
             const colorj = child[j].style.backgroundColor;
 
             child[j].style.backgroundColor = "#c0eee6";
+            child[j].classList.add("bar-transition");
             hightAtJ = parseInt(child[j].innerHTML);
             copy[k++] = hightAtJ;
             console.log("ertra j " + hightAtJ);
             j++;
             child[j - 1].style.backgroundColor = colorj;
+            await waitforme(100 + (speedRange / 10));
+    child[j-1].classList.remove("bar-transition");
         }
     } else {
         while (i <= mid) {
             const colori = child[i].style.backgroundColor;
 
             child[i].style.backgroundColor = "#c0eee6";
+            child[i].classList.add("bar-transition");
             hightAtI = parseInt(child[i].innerHTML);
             copy[k++] = hightAtI;
             console.log("ertra i " + hightAtI);
             i++;
             child[i - 1].style.backgroundColor = colori;
+            await waitforme(100 + (speedRange / 10));
+    child[i-1].classList.remove("bar-transition");
         }
     }
 
