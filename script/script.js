@@ -8,7 +8,7 @@ rangeEvent.addEventListener("change",show);
 const speedRangeEvent=document.getElementById("speed-range");
 let speedRange=speedRangeEvent.value;
 speedRangeEvent.addEventListener("change",function(){
-    document.getElementById("max-speed").innerHTML=speedRangeEvent.value;
+    document.getElementById("max-speed").innerHTML=1000-speedRangeEvent.value;
     speedRange=speedRangeEvent.value;
 
 });
@@ -19,7 +19,7 @@ let mainContainer=document.getElementById("main-container");
 function show(){
     let range=document.getElementById("range").value;
     let maxRange=document.getElementById("maxRange");
-    document.getElementById("max-speed").innerHTML=speedRangeEvent.value;
+    document.getElementById("max-speed").innerHTML=1000 - speedRangeEvent.value;
     maxRange.innerHTML=range;
 console.log("showing");
 // console.log("range is: "+range);
@@ -42,11 +42,11 @@ for( i=1;i<=range;i++){
     let heightString=height+"vh";
     childBar.style.height=heightString;
     if((height&1)==0)
-    childBar.style.backgroundColor="#181D31";
+    childBar.style.backgroundColor="#120136";
     else
-    childBar.style.backgroundColor="#E6DDC4";
+    childBar.style.backgroundColor="#40bad5";
     
-    childBar.style.color="#F49D1A";
+    childBar.style.color="#fa1e0e";
 
     
     childBar.style.width=3+"vw";
@@ -150,12 +150,12 @@ async function bubbleSort(){
        await swapBars(child,j,j+1);
              
         } }
-        child[len-i-1].style.backgroundColor ="#2b4450";
+        child[len-i-1].style.backgroundColor ="#fcbf1e";
 
     // console.log(child[child.length-i].innerHTML);
 
  }
- child[0].style.backgroundColor ="#2b4450";
+ child[0].style.backgroundColor ="#fcbf1e";
  enableControls();
 }
 
@@ -175,7 +175,7 @@ async function selectionSort(){
             }
         }
         await swapBars(child,i,min);
-        child[0].style.backgroundColor ="#2b4450";
+        child[0].style.backgroundColor ="#fcbf1e";
     }
     enableControls();
 }
@@ -202,7 +202,7 @@ async function insertSort(){
        child[j+1].innerHTML=val;
        child[j+1].style.height=val+"vh";
       
-       child[0].style.backgroundColor ="#2b4450";
+       child[0].style.backgroundColor ="#fcbf1e";
    }
    enableControls();
 
@@ -238,9 +238,88 @@ async function partition(child,beg,end){
         }
     }
     await swapBars(child,j,end);
-    child[j].style.backgroundColor="#2b4450";
+    child[j].style.backgroundColor="#fcbf1e";
     return j;
 
 }
 
+
+async function mergeSort(){
+    desableControls();
+    await mergeS(mainContainer.childNodes,0,mainContainer.childNodes.length-1);
+    enableControls();
+}
+async function mergeS(child,beg,end){
+    if(beg>=end) return;
+    let mid=(beg+end)>>1;
+    await mergeS(child,beg,mid);
+    await  mergeS(child,mid+1,end);
+    await merge(child,beg,mid,end);
+}
+async function merge(child,beg,mid,end){
+   let i=beg;
+   let j=mid+1;
+   let copy=new Array(1);
+   let k=beg;
+   while(i <= mid && j<=end){
+    let hightAtJ=parseInt(child[j].innerHTML);
+    let hightAtI=parseInt(child[i].innerHTML);
+     await waitforme(100 + (speedRange/10));
+    const colori=child[i].style.backgroundColor;
+    const colorj=child[j].style.backgroundColor;
+
+    child[j].style.backgroundColor="#678983";
+    child[i].style.backgroundColor="#678983";
+
+    if(hightAtI <= hightAtJ){
+        copy[k++]=hightAtI;
+        console.log("i "+hightAtI);
+        i++;
+        await waitforme(100 + (speedRange/10));
+        child[i-1].style.backgroundColor=colori;
+    }else{
+        copy[k++]=hightAtJ;
+        console.log("j "+hightAtJ);
+        j++;
+        await waitforme(100 + (speedRange/10));
+        child[j-1].style.backgroundColor=colorj;
+    }
+
+
+   }
+   if(i>mid){
+        while(j<=end){
+            const colorj=child[j].style.backgroundColor;
+
+            child[j].style.backgroundColor="#678983";
+            hightAtJ=parseInt(child[j].innerHTML);
+            copy[k++]=hightAtJ;
+            console.log("ertra j "+hightAtJ);
+            j++;
+            child[j-1].style.backgroundColor=colorj;
+        }
+   }else{
+    while(i<=mid){
+        const colori=child[i].style.backgroundColor;
+
+            child[i].style.backgroundColor="#678983";
+        hightAtI=parseInt(child[i].innerHTML);
+            copy[k++]=hightAtI;
+            console.log("ertra i "+hightAtI);
+            i++;
+            child[i-1].style.backgroundColor=colori;
+    }
+   }
+
+   for(i=beg;i<=end;i++){
+        child[i].style.height=copy[i]+"vh";
+        
+        child[i].innerHTML=copy[i];
+        await waitforme(speedRange);
+        child[i].style.backgroundColor="#fcbf1e";
+
+   }
+
+
+}
 
