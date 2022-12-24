@@ -54,6 +54,7 @@ for( i=1;i<=range;i++){
    
     
     childBar.innerHTML=Math.floor(height);
+    
         
    
     mainContainer.appendChild(childBar);
@@ -85,11 +86,10 @@ async function swapBars(child,j,k){
 
 const colorj=child[j].style.backgroundColor;
          const colorj1=child[k].style.backgroundColor;
-         child[j].style.backgroundColor ="#678983";
+         child[j].style.backgroundColor ="#c0eee6";
          await waitforme(speedRange);
-         child[k].style.backgroundColor ="#678983";
+         child[k].style.backgroundColor ="#c0eee6";
          await waitforme(speedRange);
-         
          child[k].style.height=actualheightAtJ+"vh";
          child[k].innerHTML=heightAtJ;
          child[j].style.height=actualheightAtJ1+"vh";
@@ -109,9 +109,9 @@ async function setBars(child,j,k){
     const colorj=child[j].style.backgroundColor;
          const colorj1=child[k].style.backgroundColor;
 
-         child[j].style.backgroundColor ="#678983";
+         child[j].style.backgroundColor ="#c0eee6";
          await waitforme(speedRange);
-         child[k].style.backgroundColor ="#678983";
+         child[k].style.backgroundColor ="#c0eee6";
          await waitforme(speedRange);
          
          
@@ -133,193 +133,11 @@ return new Promise(resolve => {
 }
 
 
-async function bubbleSort(){
-   await desableControls();
- let mainContainer=document.getElementById("main-container");
- let child=mainContainer.childNodes;
- const len=child.length;
- for(i=0;i<len -1;i++){
-    
-    console.log(child[i].innerHTML);
-    for(j=0;j<len-i-1;j++){
-        const heightAtJ=parseInt(child[j].innerHTML);
-        const heightAtJ1=parseInt(child[j+1].innerHTML);
-        // console.log(typeof(heightAtJ1));
-        if(heightAtJ > heightAtJ1){
-             
-       await swapBars(child,j,j+1);
-             
-        } }
-        child[len-i-1].style.backgroundColor ="#fcbf1e";
 
-    // console.log(child[child.length-i].innerHTML);
 
- }
- child[0].style.backgroundColor ="#fcbf1e";
- enableControls();
-}
 
-async function selectionSort(){
-    await desableControls();
-    let child=mainContainer.childNodes;
-    const len=child.length;
-  
-    for(  i=0;i<len-1;i++){
-        let min=i;
 
-        for(  j=i+1;j<len;j++){
-            const heightAtMin=parseInt(child[min].innerHTML);
-        const heightAtJ=parseInt(child[j].innerHTML);
-            if(heightAtMin > heightAtJ){
-                min=j;
-            }
-        }
-        await swapBars(child,i,min);
-        child[0].style.backgroundColor ="#fcbf1e";
-    }
-    enableControls();
-}
 
-async function insertSort(){
-   desableControls();
-   let child=mainContainer.childNodes;
-   const len=child.length;
+
+
  
-   for(  i=1;i<len;i++){
-       let val=parseInt(child[i].innerHTML);
-       
-        j=i-1;
-         
-       while(j>=0 && parseInt(child[j].innerHTML) > val){
-          let heightAtJ=parseInt(child[j].innerHTML);
-        await waitforme(100 + (speedRange/10));
-        child[j+1].innerHTML=heightAtJ;
-        child[j+1].style.height=heightAtJ+"vh";
- 
-        j--;
-       }
-       await waitforme(100 + (speedRange/10));
-       child[j+1].innerHTML=val;
-       child[j+1].style.height=val+"vh";
-      
-       child[0].style.backgroundColor ="#fcbf1e";
-   }
-   enableControls();
-
-}
-
-async function quickSort(){
-     
-    desableControls();
-    let child=mainContainer.childNodes;
-    await quick(child,0,child.length-1);
-    enableControls();
-}
-async function quick(child,beg,end){
-    if(beg>=end){
-        return ;
-
-    }
-    let pivot= await partition(child,beg,end);
-   await quick(child,beg,pivot-1);
-    await quick(child,pivot+1,end);
-}
-async function partition(child,beg,end){
-
-    let j=beg;
-    let pivot=parseInt(child[end].innerHTML);
-
-
-    for(i=beg;i<=end;i++){
-        let heightAtI=parseInt(child[i].innerHTML);
-        if( heightAtI < pivot){
-            await swapBars(child,i,j);
-            j++;
-        }
-    }
-    await swapBars(child,j,end);
-    child[j].style.backgroundColor="#fcbf1e";
-    return j;
-
-}
-
-
-async function mergeSort(){
-    desableControls();
-    await mergeS(mainContainer.childNodes,0,mainContainer.childNodes.length-1);
-    enableControls();
-}
-async function mergeS(child,beg,end){
-    if(beg>=end) return;
-    let mid=(beg+end)>>1;
-    await mergeS(child,beg,mid);
-    await  mergeS(child,mid+1,end);
-    await merge(child,beg,mid,end);
-}
-async function merge(child,beg,mid,end){
-   let i=beg;
-   let j=mid+1;
-   let copy=new Array(1);
-   let k=beg;
-   while(i <= mid && j<=end){
-    let hightAtJ=parseInt(child[j].innerHTML);
-    let hightAtI=parseInt(child[i].innerHTML);
-     await waitforme(100 + (speedRange/10));
-    const colori=child[i].style.backgroundColor;
-    const colorj=child[j].style.backgroundColor;
-
-    child[j].style.backgroundColor="#678983";
-    child[i].style.backgroundColor="#678983";
-
-    if(hightAtI <= hightAtJ){
-        copy[k++]=hightAtI;
-        console.log("i "+hightAtI);
-        i++;
-        await waitforme(100 + (speedRange/10));
-        child[i-1].style.backgroundColor=colori;
-    }else{
-        copy[k++]=hightAtJ;
-        console.log("j "+hightAtJ);
-        j++;
-        await waitforme(100 + (speedRange/10));
-        child[j-1].style.backgroundColor=colorj;
-    }
-
-
-   }
-   if(i>mid){
-        while(j<=end){
-            const colorj=child[j].style.backgroundColor;
-
-            child[j].style.backgroundColor="#678983";
-            hightAtJ=parseInt(child[j].innerHTML);
-            copy[k++]=hightAtJ;
-            console.log("ertra j "+hightAtJ);
-            j++;
-            child[j-1].style.backgroundColor=colorj;
-        }
-   }else{
-    while(i<=mid){
-        const colori=child[i].style.backgroundColor;
-
-            child[i].style.backgroundColor="#678983";
-        hightAtI=parseInt(child[i].innerHTML);
-            copy[k++]=hightAtI;
-            console.log("ertra i "+hightAtI);
-            i++;
-            child[i-1].style.backgroundColor=colori;
-    }
-   }
-
-   for(i=beg;i<=end;i++){
-        child[i].style.height=copy[i]+"vh";
-        
-        child[i].innerHTML=copy[i];
-        await waitforme(speedRange);
-        child[i].style.backgroundColor="#fcbf1e";
-
-   }
-
-
-}
-
