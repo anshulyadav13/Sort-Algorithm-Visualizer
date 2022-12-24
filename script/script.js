@@ -3,12 +3,12 @@ window.onload = function () {
     show();
 }
 rangeEvent = document.getElementById("range");
-rangeEvent.addEventListener("change", show);
+rangeEvent.addEventListener("oninput", show);
 
 const speedRangeEvent = document.getElementById("speed-range");
 let speedRange = speedRangeEvent.value;
-speedRangeEvent.addEventListener("change", function () {
-    document.getElementById("max-speed").innerHTML = 1000 - speedRangeEvent.value;
+speedRangeEvent.addEventListener("oninput", function () {
+    document.getElementById("max-speed").innerHTML = Math.floor( speedRangeEvent.value-1000);
     speedRange = speedRangeEvent.value;
 
 });
@@ -19,7 +19,7 @@ let mainContainer = document.getElementById("main-container");
 function show() {
     let range = document.getElementById("range").value;
     let maxRange = document.getElementById("maxRange");
-    document.getElementById("max-speed").innerHTML = 1000 - speedRangeEvent.value;
+    document.getElementById("max-speed").innerHTML = Math.floor( speedRangeEvent.value-1000);
     maxRange.innerHTML = range;
     console.log("showing");
     // console.log("range is: "+range);
