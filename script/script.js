@@ -3,11 +3,11 @@ window.onload = function () {
     show();
 }
 rangeEvent = document.getElementById("range");
-rangeEvent.addEventListener("oninput", show);
+rangeEvent.addEventListener("change", show);
 
 const speedRangeEvent = document.getElementById("speed-range");
 let speedRange = speedRangeEvent.value;
-speedRangeEvent.addEventListener("oninput", function () {
+speedRangeEvent.addEventListener("change", function () {
     document.getElementById("max-speed").innerHTML = Math.floor( speedRangeEvent.value-1000);
     speedRange = speedRangeEvent.value;
 
