@@ -8,7 +8,7 @@ rangeEvent.addEventListener("change", show);
 const speedRangeEvent = document.getElementById("speed-range");
 let speedRange = speedRangeEvent.value;
 speedRangeEvent.addEventListener("change", function () {
-    document.getElementById("max-speed").innerHTML = Math.floor( speedRangeEvent.value-1000);
+    // document.getElementById("max-speed").innerHTML =  speedRangeEvent.value;
     speedRange = speedRangeEvent.value;
 
 });
@@ -19,7 +19,7 @@ let mainContainer = document.getElementById("main-container");
 function show() {
     let range = document.getElementById("range").value;
     let maxRange = document.getElementById("maxRange");
-    document.getElementById("max-speed").innerHTML = Math.floor( speedRangeEvent.value-1000);
+    // document.getElementById("max-speed").innerHTML = speedRangeEvent.value ;
     maxRange.innerHTML = range;
     console.log("showing");
     // console.log("range is: "+range);
