@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f1fafb;
+    background-color: #edf7fa;
     text-align: center;
     font-size: 1.7vw;
     color: #40bad5;
@@ -89,10 +89,10 @@ input[type=button]:hover {
 }
 .bar-transition{
 
-    transition:ease-in ;
-    transition-duration: 100ms;
+    transition:all 1s ;
+    /* transition-duration: 50ms; */
     transform: scale(1.1);
-    transition:ease-out ;
+    /* transition:ease-out ; */
 
 }
 
